@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { PhotoModule } from './photo/photo.module';
 import { TagsModule } from './tags/tags.module';
 import { MetaOptionsModule } from './meta-options/meta-options.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { MetaOptionsModule } from './meta-options/meta-options.module';
     PhotoModule,
     TagsModule,
     MetaOptionsModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

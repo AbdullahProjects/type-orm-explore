@@ -1,7 +1,10 @@
+import { Photo } from 'src/photo/entities/photo.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -19,4 +22,10 @@ export class MetaOption {
 
   @UpdateDateColumn()
   updatedDate: Date;
+
+  @OneToOne(() => Photo, (photo) => photo.metaOption, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn()
+  photo: Photo;
 }

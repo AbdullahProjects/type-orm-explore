@@ -20,17 +20,16 @@ export class Photo {
   @Column({ type: 'varchar', nullable: false, length: 100 })
   description: string;
 
-  @Column({ type: 'varchar', nullable: false })
+  @Column({ type: 'varchar', nullable: true })
   filename: string;
 
   @Column({ type: 'decimal', nullable: false })
   views: number;
 
-  @Column({ type: 'boolean', nullable: false, default: true })
+  @Column({ type: 'boolean', nullable: true, default: true })
   isPublished: boolean;
 
-  @OneToOne(() => MetaOption)
-  @JoinColumn()
+  @OneToOne(() => MetaOption, (metaOption) => metaOption.photo)
   metaOption?: MetaOption;
 
   @OneToMany(() => Tag, (tag) => tag.id)

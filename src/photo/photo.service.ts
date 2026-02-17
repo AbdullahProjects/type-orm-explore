@@ -38,4 +38,35 @@ export class PhotoService {
       throw error;
     }
   }
+
+  async findAll() {
+    const posts = await this.photoRepository.find({
+      relations: {
+        metaOption: true,
+      },
+    });
+    return posts;
+  }
+
+  async deletePhotoById(id: number) {
+    // const post = await this.photoRepository.findOne({
+    //   where: { id },
+    //   relations: ['metaOption'],
+    // });
+
+    await this.photoRepository.delete(id);
+
+    // console.log('Phot meta option id: ', post);
+
+    // let metaOption = await this.metaOptionRepository.find({
+    //   where: { id: post?.metaOption?.id },
+    //   relations: {
+    //     photo: true,
+    //   },
+    // });
+    // console.log(metaOption);
+    // // await this.metaOptionRepository.delete(post?.metaOption?.id!);
+
+    return { deleted: true, id };
+  }
 }
